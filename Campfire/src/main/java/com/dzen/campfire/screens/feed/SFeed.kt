@@ -79,8 +79,8 @@ class SFeed : Screen(R.layout.screen_feed), PostList {
             vTitles.visibility = View.GONE
         }
         vTitles.setTitles(*titles.toTypedArray())
-        if (App.activity().type.getExtraNavigationItem() != null) {
-            vTitles.offsetLeft = 0
+        if (App.activity().type.getNavigationDrawable(this) == null) {
+            vTitles.offsetLeft = ToolsView.dpToPx(16).toInt()
         }
 
         ToolsThreads.main(true) { (pagerCardAdapter.get(0) as APage).markLoaded() }
