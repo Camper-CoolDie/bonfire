@@ -6,6 +6,7 @@ mod change_name;
 mod change_password;
 mod check_recovery_token;
 mod check_tfa_status;
+mod delete;
 mod enable_email_tfa;
 mod generate_tfa_secret;
 mod get_by_id;
@@ -297,6 +298,14 @@ impl AuthService for AuthServer {
         self._terminate_all_sessions(access_token).await
     }
 
+    async fn terminate_all_sessions_internal(
+        self,
+        _: Context,
+        user_id: i64,
+    ) -> Result<(), AuthError> {
+        self._terminate_all_sessions_internal(user_id).await
+    }
+
     async fn change_password(
         self,
         _: Context,
@@ -482,6 +491,10 @@ impl AuthService for AuthServer {
         loose: bool,
     ) -> Result<(), AuthError> {
         self._change_name(user_id, new_name, loose).await
+    }
+
+    async fn delete_user(self, _: Context, user_id: i64) -> Result<(), AuthError> {
+        self._delete_user(user_id).await
     }
 
     async fn vacuum(self, _: Context) -> Result<(), AuthError> {
