@@ -134,7 +134,11 @@ object ToolsAndroid {
             }
 
         } else {
-            bluetoothMacAddress = bluetoothAdapter.address
+            try {
+                bluetoothMacAddress = bluetoothAdapter.address
+            } catch (e: SecurityException) {
+                err(e)
+            }
         }
         return bluetoothMacAddress
     }
@@ -351,7 +355,7 @@ object ToolsAndroid {
             return
 
         val pm = SupAndroid.appContext!!.getSystemService(Context.POWER_SERVICE) as PowerManager
-        val screenLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP, "FULL WAKE LOCK")
+        val screenLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP, "campfire:fullwakelock")
 
         screenLock.acquire()
         Thread {
