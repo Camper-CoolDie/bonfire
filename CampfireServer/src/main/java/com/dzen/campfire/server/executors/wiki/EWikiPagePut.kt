@@ -21,7 +21,7 @@ class EWikiPagePut : RWikiPagePut(0, emptyArray(), 0) {
         if (wikiTitle.wikiStatus != API.STATUS_PUBLIC) throw ApiException(E_BAD_STATUS)
         if (wikiTitle.itemType != API.WIKI_TYPE_ARTICLE) throw ApiException(E_BAD_TYPE)
 
-        ControllerFandom.checkCan(apiAccount, wikiTitle.fandomId, languageId, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, wikiTitle.fandomId, languageId, API.LVL_MODERATOR_WIKI_EDIT)
 
         wikiPagesOld = ControllerWiki.getPagesByItemId_OnlyPublic(wikiItemId, languageId)
 

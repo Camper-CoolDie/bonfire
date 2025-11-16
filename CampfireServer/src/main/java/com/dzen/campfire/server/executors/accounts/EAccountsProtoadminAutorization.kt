@@ -10,7 +10,7 @@ class EAccountsProtoadminAutorization : RAccountsProtoadminAutorization(0) {
 
     @Throws(ApiException::class)
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_PROTOADMIN)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_PROTOADMIN)
     }
 
     override fun execute(): Response {

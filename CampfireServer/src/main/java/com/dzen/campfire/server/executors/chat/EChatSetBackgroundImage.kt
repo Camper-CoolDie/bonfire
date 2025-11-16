@@ -43,7 +43,7 @@ class EChatSetBackgroundImage : RChatSetBackgroundImage(0L, null) {
         val name:String = v.next()
 
         if(type == API.CHAT_TYPE_FANDOM_SUB){
-            ControllerFandom.checkCan(apiAccount, fandomId, languageId, API.LVL_MODERATOR_CHATS)
+            ControllerFandom.checkCanOrThrow(apiAccount, fandomId, languageId, API.LVL_MODERATOR_CHATS)
         }else if(type == API.CHAT_TYPE_CONFERENCE){
             if(!ControllerChats.hasAccessToConf_Edit(apiAccount.id, chatId)) throw ApiException(API.ERROR_ACCESS)
         }else{

@@ -10,7 +10,7 @@ class EAccountsAdminEffectAdd : RAccountsAdminEffectAdd(0L, 0L, 0L, "") {
 
     override fun check() {
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_FANDOM_EFFECTS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_FANDOM_EFFECTS)
         if(accountId == apiAccount.id) throw ApiException(API.ERROR_ACCESS)
     }
 

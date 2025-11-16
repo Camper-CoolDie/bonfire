@@ -355,7 +355,7 @@ object ControllerOptimizer {
 
     fun getFandomKarmaCof(fandomId: Long): Long {
         if (!fandomKarmaCofCash.containsKey(fandomId)) {
-            fandomKarmaCofCash[fandomId] = ControllerFandom[fandomId, TFandoms.karma_cof].next()
+            fandomKarmaCofCash[fandomId] = ControllerFandom.getKarmaCof(fandomId)
         }
         return fandomKarmaCofCash[fandomId] ?: 100
     }

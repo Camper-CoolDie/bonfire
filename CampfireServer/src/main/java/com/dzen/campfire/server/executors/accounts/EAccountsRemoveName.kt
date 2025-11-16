@@ -17,7 +17,7 @@ class EAccountsRemoveName : RAccountsRemoveName(0, "") {
 
     @Throws(ApiException::class)
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_USER_REMOVE_NAME)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_USER_REMOVE_NAME)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 

@@ -17,7 +17,7 @@ class EActivitiesRelayRaceCreate() : RActivitiesRelayRaceCreate(0,0,0,"","", "")
         description = ControllerCensor.cens(description)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
 
-        ControllerFandom.checkCan(apiAccount, fandomId, languageId, API.LVL_MODERATOR_RELAY_RACE)
+        ControllerFandom.checkCanOrThrow(apiAccount, fandomId, languageId, API.LVL_MODERATOR_RELAY_RACE)
 
         if(name.length < API.ACTIVITIES_NAME_MIN || name.length > API.ACTIVITIES_NAME_MAX) throw ApiException(API.ERROR_ACCESS)
         if(description.length < API.ACTIVITIES_DESC_MIN || description.length > API.ACTIVITIES_DESC_MAX) throw ApiException(API.ERROR_ACCESS)

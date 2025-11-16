@@ -20,7 +20,7 @@ class EProjectDonatesDraftsGetAll : RProjectDonatesDraftsGetAll(0) {
     val date = ToolsDate.getStartOfMonth()
 
     override fun check() {
-        if(!ControllerFandom.can(apiAccount, API.LVL_PROTOADMIN)) throw ApiException(API.ERROR_ACCESS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_PROTOADMIN)
     }
 
     override fun execute(): Response {

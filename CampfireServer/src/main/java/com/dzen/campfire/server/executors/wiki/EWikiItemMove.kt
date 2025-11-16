@@ -29,7 +29,7 @@ class EWikiItemMove : RWikiItemMove(0, 0, 0) {
             if (destinationId == itemId) throw ApiException(E_BAD_PAGE_INDEX) // мне лень
         }
 
-        ControllerFandom.checkCan(apiAccount, wikiTitleItem.fandomId, 1, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, wikiTitleItem.fandomId, 1, API.LVL_MODERATOR_WIKI_EDIT)
     }
 
     override fun execute(): Response {

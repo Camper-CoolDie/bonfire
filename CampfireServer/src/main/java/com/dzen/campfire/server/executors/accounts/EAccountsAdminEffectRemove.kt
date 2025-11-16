@@ -21,7 +21,7 @@ class EAccountsAdminEffectRemove : RAccountsAdminEffectRemove(0L, "") {
 
     override fun check() {
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_FANDOM_EFFECTS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_FANDOM_EFFECTS)
 
         val m = ControllerEffects.get(effectId)
         if(m == null) throw ApiException(API.ERROR_GONE)

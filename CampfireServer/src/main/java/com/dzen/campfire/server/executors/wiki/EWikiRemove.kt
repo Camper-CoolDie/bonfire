@@ -14,7 +14,7 @@ class EWikiRemove : RWikiRemove(0) {
     override fun check() {
         val itemX = ControllerWiki.getTitlesByItemId(itemId) ?: throw ApiException(API.ERROR_GONE)
         item = itemX
-        if (!API.LANGUAGES.any { ControllerFandom.can(apiAccount, item.fandomId, it.id, API.LVL_MODERATOR_WIKI_EDIT) }) {
+        if (!API.LANGUAGES.any { ControllerFandom.checkCan(apiAccount, item.fandomId, it.id, API.LVL_MODERATOR_WIKI_EDIT) }) {
             throw ApiException(API.ERROR_ACCESS)
         }
     }

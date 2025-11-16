@@ -5,8 +5,6 @@ import com.sup.dev.java_pc.sql.Sql
 import com.sup.dev.java_pc.sql.SqlQuerySelect
 
 object TFandoms {
-
-
     val NAME = "fandoms"
 
     val id = "id"
@@ -20,10 +18,4 @@ object TFandoms {
     val fandom_category = "fandom_category"
     val fandom_closed = "fandom_closed"
     val karma_cof = "karma_cof"
-
-    fun other_names(languageId: Long) = Sql.IFNULL(SqlQuerySelect(TCollisions.NAME, TCollisions.value_2)
-            .where(TCollisions.owner_id, "=", "$NAME.$id")
-            .where(TCollisions.collision_id, "=", languageId)
-            .where(TCollisions.collision_type, "=", API.COLLISION_FANDOM_NAMES), "'~~~'")
-
 }

@@ -21,7 +21,7 @@ class EStickersGetAllByPackId : RStickersGetAllByPackId(0) {
                 .where(TPublications.tag_1, "=", packId)
                 .sort(TPublications.date_create, true)
 
-        if (!ControllerFandom.can(apiAccount, API.LVL_PROTOADMIN)) {
+        if (!ControllerFandom.checkCan(apiAccount, API.LVL_PROTOADMIN)) {
             select.where(TPublications.status, "=", API.STATUS_PUBLIC)
             select.where(Sql.IFNULL("(SELECT ${TPublications.status} FROM ${TPublications.NAME} u WHERE u.${TPublications.id}=${TPublications.NAME}.${TPublications.tag_1})", 0), "=", API.STATUS_PUBLIC)
         }

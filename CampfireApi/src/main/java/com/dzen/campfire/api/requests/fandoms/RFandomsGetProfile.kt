@@ -38,6 +38,15 @@ open class RFandomsGetProfile(
         var imageTitleGif = ImageRef()
         @Deprecated("use ImageRefs")
         var imageTitleGifId = 0L
+        var subChatsCount = 0L
+        var tagsCount = 0L
+        var categoriesCount = 0L
+        var karma30 = 0
+        // only subscribers of the specified language are counted
+        var subscribersCount = 0L
+        var rubricsCount = 0L
+        var wikiArticlesCount = 0L
+        var relayRacesCount = 0L
 
 
         constructor(json: Json) {
@@ -51,6 +60,14 @@ open class RFandomsGetProfile(
                     notifyImportant: Boolean,
                     imageTitle: Long,
                     imageTitleGif: Long,
+                    subChatsCount: Long,
+                    tagsCount: Long,
+                    categoriesCount: Long,
+                    karma30: Long,
+                    subscribersCount: Long,
+                    rubricsCount: Long,
+                    wikiArticlesCount: Long,
+                    relayRacesCount: Long,
         ) {
             this.viceroyAccount = viceroyAccount
             this.viceroyDate = viceroyDate
@@ -59,6 +76,14 @@ open class RFandomsGetProfile(
             this.notifyImportant = notifyImportant
             this.imageTitleId = imageTitle
             this.imageTitleGifId = imageTitleGif
+            this.subChatsCount = subChatsCount
+            this.tagsCount = tagsCount
+            this.categoriesCount = categoriesCount
+            this.karma30 = karma30
+            this.subscribersCount = subscribersCount
+            this.rubricsCount = rubricsCount
+            this.wikiArticlesCount = wikiArticlesCount
+            this.relayRacesCount = relayRacesCount
         }
 
         override fun json(inp: Boolean, json: Json) {
@@ -71,6 +96,14 @@ open class RFandomsGetProfile(
             imageTitleId = json.m(inp, "imageTitleId", imageTitleId)
             imageTitleGif = json.m(inp, "imageTitleGif", imageTitleGif)
             imageTitleGifId = json.m(inp, "imageTitleGifId", imageTitleGifId)
+            subChatsCount = json.m(inp, "subChatsCount", subChatsCount)
+            tagsCount = json.m(inp, "tagsCount", tagsCount)
+            categoriesCount = json.m(inp, "categoriesCount", categoriesCount)
+            karma30 = json.m(inp, "karma30", karma30)
+            subscribersCount = json.m(inp, "subscribersCount", subscribersCount)
+            rubricsCount = json.m(inp, "rubricsCount", rubricsCount)
+            wikiArticlesCount = json.m(inp, "wikiArticlesCount", wikiArticlesCount)
+            relayRacesCount = json.m(inp, "relayRacesCount", relayRacesCount)
         }
 
         override fun fillImageRefs(receiver: ImageHolderReceiver) {

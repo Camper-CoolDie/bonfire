@@ -13,7 +13,7 @@ import com.dzen.campfire.server.controllers.*
 class EAdminVoteCancel : RAdminVoteCancel(0, "") {
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_BAN)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_BAN)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 

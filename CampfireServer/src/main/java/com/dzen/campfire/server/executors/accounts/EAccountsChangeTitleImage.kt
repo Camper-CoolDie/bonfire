@@ -17,11 +17,11 @@ class EAccountsChangeTitleImage : RAccountsChangeTitleImage(null, null) {
 
     @Throws(ApiException::class)
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_CAN_CHANGE_PROFILE_IMAGE)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CAN_CHANGE_PROFILE_IMAGE)
         if (image!!.size > API.ACCOUNT_TITLE_IMG_WEIGHT) throw ApiException(E_BAD_IMG_WEIGHT)
 
         if (imageGif != null) {
-            ControllerFandom.checkCan(apiAccount, API.LVL_CAN_CHANGE_PROFILE_IMAGE_GIF)
+            ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CAN_CHANGE_PROFILE_IMAGE_GIF)
 
             if (imageGif!!.size > API.ACCOUNT_TITLE_IMG_GIF_WEIGHT) throw ApiException(E_BAD_IMG_WEIGHT)
             if (!ToolsImage.checkImageMaxScaleUnknownType(imageGif!!, API.ACCOUNT_TITLE_IMG_GIF_W, API.ACCOUNT_TITLE_IMG_GIF_H, true, true, true)) throw ApiException(E_BAD_IMG_SIDES)

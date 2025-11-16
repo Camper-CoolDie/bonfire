@@ -10,9 +10,8 @@ class EAccountsAdminBan() : RAccountsAdminBan(0, 0, "") {
 
     @Throws(ApiException::class)
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_BAN)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_BAN)
         if (banTime > 1000L * 60 * 60 * 24 * 365) throw ApiException(API.ERROR_ACCESS)
-        if (!ControllerFandom.checkCanModerate(apiAccount, accountId)) throw ApiException(E_LOW_KARMA_FORCE)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 

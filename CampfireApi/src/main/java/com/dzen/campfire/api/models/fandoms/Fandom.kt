@@ -19,8 +19,10 @@ class Fandom : JsonParsable, ImageHolder {
     var dateCreate = 0L
     var creatorId = 0L
     var subscribesCount = 0L
+    var wikiArticlesCount = 0L
     var status = 0L
     var category = 0L
+    var params = emptyArray<Array<Long>>()
     var imageTitle = ImageRef()
     @Deprecated("use ImageRefs")
     var imageTitleId = 0L
@@ -53,9 +55,11 @@ class Fandom : JsonParsable, ImageHolder {
         dateCreate = json.m(inp, "dateCreate", dateCreate)
         creatorId = json.m(inp, "creatorId", creatorId)
         subscribesCount = json.m(inp, "subscribesCount", subscribesCount)
+        wikiArticlesCount = json.m(inp, "wikiArticlesCount", wikiArticlesCount)
         status = json.m(inp, "status", status)
         languageId = json.m(inp, "languageId", languageId)
         category = json.m(inp, "category", category)
+        params = json.m(inp, "params", params)
         closed = json.m(inp, "closed", closed)
         karmaCof = json.m(inp, "karmaCof", karmaCof)
 

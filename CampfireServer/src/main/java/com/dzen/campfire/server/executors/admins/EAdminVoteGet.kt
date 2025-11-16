@@ -7,7 +7,7 @@ import com.dzen.campfire.server.controllers.*
 class EAdminVoteGet : RAdminVoteGet() {
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_BAN)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_BAN)
     }
 
     override fun execute(): Response {

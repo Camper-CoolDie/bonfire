@@ -14,8 +14,7 @@ import com.sup.dev.java.libs.json.Json
 class EAccountsAdminRemoveLink : RAccountsAdminRemoveLink(0, 0, "") {
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_USER_REMOVE_LINK)
-        ControllerFandom.checkCanModerate(apiAccount, accountId)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_USER_REMOVE_LINK)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 

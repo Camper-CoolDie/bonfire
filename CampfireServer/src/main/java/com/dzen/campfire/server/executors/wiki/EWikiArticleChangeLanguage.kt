@@ -15,8 +15,8 @@ class EWikiArticleChangeLanguage : RWikiArticleChangeLanguage(0, 0, 0) {
         val itemX = ControllerWiki.getTitlesByItemId(itemId)
         if (itemX == null) throw ApiException(API.ERROR_GONE)
         item = itemX
-        ControllerFandom.checkCan(apiAccount, item.fandomId, fromLanguageId, API.LVL_MODERATOR_WIKI_EDIT)
-        ControllerFandom.checkCan(apiAccount, item.fandomId, toLanguageId, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, item.fandomId, fromLanguageId, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, item.fandomId, toLanguageId, API.LVL_MODERATOR_WIKI_EDIT)
     }
 
 

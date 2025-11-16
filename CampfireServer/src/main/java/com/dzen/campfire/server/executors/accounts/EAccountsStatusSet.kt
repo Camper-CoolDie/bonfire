@@ -10,7 +10,7 @@ import com.dzen.campfire.api.tools.ApiException
 class EAccountsStatusSet : RAccountsStatusSet("") {
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_CAN_CHANGE_STATUS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CAN_CHANGE_STATUS)
         if(status.length > API.ACCOUNT_STATUS_MAX_L) throw ApiException(E_BAD_SIZE)
     }
 

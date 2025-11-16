@@ -17,7 +17,7 @@ class EWikiItemHistoryCancel : RWikiItemHistoryCancel(0) {
         this.pages = pages
         val title = ControllerWiki.getTitlesByItemId(pages.itemId) ?: throw ApiException(API.ERROR_GONE)
 
-        ControllerFandom.checkCan(apiAccount, title.fandomId, pages.languageId, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, title.fandomId, pages.languageId, API.LVL_MODERATOR_WIKI_EDIT)
     }
 
 

@@ -27,7 +27,7 @@ class ERubricsModerChangeOwner : RRubricsModerChangeOwner(0, 0, "") {
         val rubricX = ControllerRubrics.getRubric(rubricId)
         if (rubricX == null || rubricX.status != API.STATUS_PUBLIC) throw ApiException(API.ERROR_ACCESS)
         rubric = rubricX
-        ControllerFandom.checkCan(apiAccount, rubric.fandom.id, rubric.fandom.languageId, API.LVL_MODERATOR_RUBRIC)
+        ControllerFandom.checkCanOrThrow(apiAccount, rubric.fandom.id, rubric.fandom.languageId, API.LVL_MODERATOR_RUBRIC)
         val fandomX = ControllerFandom.getFandom(rubric.fandom.id)
         if (fandomX == null || fandomX.status != API.STATUS_PUBLIC) throw ApiException(API.ERROR_ACCESS)
         fandom = fandomX

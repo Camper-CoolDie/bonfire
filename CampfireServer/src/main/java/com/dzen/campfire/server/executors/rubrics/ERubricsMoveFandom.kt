@@ -25,12 +25,12 @@ class ERubricsMoveFandom : RRubricsMoveFandom(0, 0, 0, "") {
 
         if (rubric.fandom.id == fandomId && rubric.fandom.languageId == languageId)
             throw ApiException(E_SAME_FANDOM)
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_MOVE_RUBRIC)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_MOVE_RUBRIC)
         if (moderatorComment.isBlank()) {
             throw ApiException(E_BAD_COMMENT, "Moderator comment is blank")
         }
 
-        if (! ControllerFandom.checkExist(fandomId))
+        if (!ControllerFandom.checkExists(fandomId))
             throw ApiException(API.ERROR_GONE, "Fandom does not exist")
         if (! API.isLanguageExsit(languageId))
             throw ApiException(API.ERROR_GONE, "Language does not exist")
@@ -44,9 +44,9 @@ class ERubricsMoveFandom : RRubricsMoveFandom(0, 0, 0, "") {
             .update(TRubrics.fandom_id, fandomId)
             .update(TRubrics.language_id, languageId))
 
-        val fandomIterator = ControllerFandom[fandomId, TFandoms.name, TFandoms.image_id]
-        val fandomName = fandomIterator.next<String>()
-        val fandomImageId = fandomIterator.next<Long>()
+        val fandom = ControllerFandom.getFandom(fandomId)!!
+        val fandomName = fandom.name
+        val fandomImageId = fandom.imageId
 
         val moderationId = ControllerPublications.moderation(ModerationRubricFandomMove(
             moderatorComment, rubric.id, rubric.name, rubric.fandom.id,

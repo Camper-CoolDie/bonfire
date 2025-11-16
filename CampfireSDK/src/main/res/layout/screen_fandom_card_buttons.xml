@@ -18,12 +18,12 @@
         android:orientation="vertical">
 
         <com.sup.dev.android.views.settings.SettingsMini
-            android:id="@+id/vChatsButton"
+            android:id="@+id/vKarmaButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:Settings_lineVisible="false"
             app:Settings_icon_filter="?colorOnPrimaryIcons"
-            app:Settings_icon="@drawable/ic_mode_comment_white_24dp"/>
+            app:Settings_icon="@drawable/ic_star_white_24dp"/>
 
         <com.sup.dev.android.views.settings.SettingsMini
             android:id="@+id/vTagsButton"
@@ -34,38 +34,6 @@
             app:Settings_icon="@drawable/ic_insert_link_white_24dp"/>
 
         <com.sup.dev.android.views.settings.SettingsMini
-            android:id="@+id/vModerationButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:Settings_lineVisible="false"
-            app:Settings_icon_filter="?colorOnPrimaryIcons"
-            app:Settings_icon="@drawable/ic_security_white_24dp"/>
-
-        <com.sup.dev.android.views.settings.SettingsMini
-            android:id="@+id/vUsersButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:Settings_lineVisible="false"
-            app:Settings_icon_filter="?colorOnPrimaryIcons"
-            app:Settings_icon="@drawable/ic_group_white_24dp"/>
-
-        <com.sup.dev.android.views.settings.SettingsMini
-            android:id="@+id/vSubscribersButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:Settings_lineVisible="false"
-            app:Settings_icon_filter="?colorOnPrimaryIcons"
-            app:Settings_icon="@drawable/ic_group_white_24dp"/>
-
-        <com.sup.dev.android.views.settings.SettingsMini
-            android:id="@+id/vRubricButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:Settings_lineVisible="false"
-            app:Settings_icon_filter="?colorOnPrimaryIcons"
-            app:Settings_icon="@drawable/ic_access_time_white_24dp"/>
-
-        <com.sup.dev.android.views.settings.SettingsMini
             android:id="@+id/vWikiButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,12 +42,68 @@
             app:Settings_icon="@drawable/ic_language_white_24dp"/>
 
         <com.sup.dev.android.views.settings.SettingsMini
-            android:id="@+id/vRelayRaces"
+            android:id="@+id/vRubricsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:Settings_lineVisible="false"
+            app:Settings_icon_filter="?colorOnPrimaryIcons"
+            app:Settings_icon="@drawable/ic_access_time_white_24dp"/>
+
+        <com.sup.dev.android.views.settings.SettingsMini
+            android:id="@+id/vRelayRacesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:Settings_lineVisible="false"
             app:Settings_icon_filter="?colorOnPrimaryIcons"
             app:Settings_icon="@drawable/ic_flag_white_24dp"/>
+
+        <LinearLayout
+            android:id="@+id/vContainerDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.SettingsMini
+                android:id="@+id/vChatsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_filter="?colorOnPrimaryIcons"
+                app:Settings_icon="@drawable/ic_mode_comment_white_24dp"/>
+
+            <com.sup.dev.android.views.settings.SettingsMini
+                android:id="@+id/vSubscribersButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_filter="?colorOnPrimaryIcons"
+                app:Settings_icon="@drawable/ic_group_white_24dp"/>
+
+            <com.sup.dev.android.views.settings.SettingsMini
+                android:id="@+id/vModerationButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_filter="?colorOnPrimaryIcons"
+                app:Settings_icon="@drawable/ic_security_white_24dp"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/vShowMoreTouch"
+            style="@style/Touchable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/vShowMore"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+        </FrameLayout>
 
     </LinearLayout>
 

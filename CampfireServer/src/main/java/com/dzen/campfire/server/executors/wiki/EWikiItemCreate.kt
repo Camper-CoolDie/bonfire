@@ -31,7 +31,7 @@ class EWikiItemCreate : RWikiItemCreate(0, 0, WikiTitle(), null, null) {
             newItem.translates = ToolsCollections.add(t, newItem.translates)
         }
 
-        val permissionGranted = languagesIds.any { ControllerFandom.can(apiAccount, fandomId, it, API.LVL_MODERATOR_WIKI_EDIT) }
+        val permissionGranted = languagesIds.any { ControllerFandom.checkCan(apiAccount, fandomId, it, API.LVL_MODERATOR_WIKI_EDIT) }
         if (!permissionGranted) throw ApiException(API.ERROR_ACCESS)
 
         if(ToolsImage.isGIF(imageMini!!)){

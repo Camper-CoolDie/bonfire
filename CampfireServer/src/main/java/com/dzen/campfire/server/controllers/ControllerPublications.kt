@@ -91,9 +91,7 @@ object ControllerPublications {
     }
 
     fun parseMentions(text: String, publicationId: Long, publicationType: Long, tag1: Long, tag2: Long, tag3: Long, fromAccount: ApiAccount, exclude: Array<Long>) {
-        try {
-            ControllerFandom.checkCan(fromAccount, API.LVL_CAN_MENTION)
-        }catch (e:Exception){
+        if (!ControllerFandom.checkCan(fromAccount, API.LVL_CAN_MENTION)) {
             return
         }
         if(OptimizerEffects.get(fromAccount.id, API.EFFECT_INDEX_MENTION_LOCK) != null) return

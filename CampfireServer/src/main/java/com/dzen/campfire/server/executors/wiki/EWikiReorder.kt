@@ -29,7 +29,7 @@ class EWikiReorder : RWikiReorder(0, 0) {
                 wikiTitle.parentItemId != wikiTitleBefore.parentItemId
         ) throw ApiException(E_BAD_PAGE_INDEX)
 
-        ControllerFandom.checkCan(apiAccount, wikiTitle.fandomId, 1, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, wikiTitle.fandomId, 1, API.LVL_MODERATOR_WIKI_EDIT)
     }
 
     override fun execute(): Response {

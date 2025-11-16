@@ -49,14 +49,20 @@ class EChatMessageCreate(
         message.fandom.id = tag.targetId
         message.fandom.languageId = tag.targetSubId
 
+        val fandom = Fandom()
+        if (message.chatType == API.CHAT_TYPE_FANDOM_ROOT || message.chatType == API.CHAT_TYPE_FANDOM_SUB) {
+            fandom = ControllerFandom.getFandom(tag.targetId)
+            if (fandom == null || fandom.status != API.STATUS_PUBLIC) {
+                throw ApiException(API.ERROR_ACCESS)
+            }
+        }
+
         if (message.chatType == API.CHAT_TYPE_FANDOM_ROOT) {
             if (!API.isLanguageExsit(tag.targetSubId)) throw ApiException(API.ERROR_GONE)
-            if (ControllerFandom.get(tag.targetId, TFandoms.status).next<Long>() != API.STATUS_PUBLIC) throw ApiException(API.ERROR_ACCESS)
             ControllerAccounts.checkAccountBanned(apiAccount.id, message.fandom.id, message.fandom.languageId)
-            val v = ControllerFandom[message.fandom.id, TFandoms.name, TFandoms.image_id, TFandoms.fandom_category]
-            message.fandom.name = v.next()
-            message.fandom.imageId = v.next()
-            message.category = v.next()
+            message.fandom.name = fandom.name
+            message.fandom.imageId = fandom.imageId
+            message.category = fandom.category
 
         } else if (message.chatType == API.CHAT_TYPE_PRIVATE) {
             ControllerAccounts.checkAccountBanned(apiAccount.id)
@@ -78,10 +84,9 @@ class EChatMessageCreate(
             message.fandom.imageId = v.next()
         } else if (message.chatType == API.CHAT_TYPE_FANDOM_SUB) {
             ControllerAccounts.checkAccountBanned(apiAccount.id, message.fandom.id, message.fandom.languageId)
-            val v = ControllerFandom[message.fandom.id, TFandoms.name, TFandoms.image_id, TFandoms.fandom_category]
-            message.fandom.name = v.next()
-            message.fandom.imageId = v.next()
-            message.category = v.next()
+            message.fandom.name = fandom.name
+            message.fandom.imageId = fandom.imageId
+            message.category = fandom.category
 
         }else {
             throw ApiException(E_BAD_CHAT_TYPE)

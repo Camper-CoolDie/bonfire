@@ -1681,6 +1681,9 @@ object API_TRANSLATE {
     var fandom_loading_in_profess = 0L
     var fandom_remove_error_already = 0L
     var fandom_language_choose = 0L
+    var fandom_button_tags_subtitle = 0L
+    var fandom_button_karma_subtitle = 0L
+    var fandom_button_wiki_subtitle = 0L
 
     var chats_empty = 0L
     var chats_loading = 0L

@@ -18,7 +18,7 @@ class EAccountsChangeAvatar : RAccountsChangeAvatar(null) {
         ControllerAccounts.checkAccountBanned(apiAccount.id, 0, 0)
 
         if (ToolsImage.isGIF(image!!)) {
-            ControllerFandom.checkCan(apiAccount, API.LVL_CAN_CHANGE_AVATAR_GIF)
+            ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CAN_CHANGE_AVATAR_GIF)
             if (image!!.size > API.ACCOUNT_IMG_WEIGHT_GIF) throw ApiException(
                 E_BAD_IMG_WEIGHT,
                 " " + image!!.size + " > " + API.ACCOUNT_IMG_WEIGHT_GIF

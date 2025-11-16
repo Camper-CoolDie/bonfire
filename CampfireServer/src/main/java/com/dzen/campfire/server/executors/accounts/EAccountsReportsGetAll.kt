@@ -14,7 +14,7 @@ import com.sup.dev.java_pc.sql.SqlQuerySelect
 class EAccountsReportsGetAll : RAccountsReportsGetAll(0) {
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_BAN)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_BAN)
     }
 
     override fun execute(): Response {

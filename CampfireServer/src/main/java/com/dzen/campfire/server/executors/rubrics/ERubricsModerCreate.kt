@@ -21,7 +21,7 @@ class ERubricsModerCreate : RRubricsModerCreate(0, 0, "", 0, "") {
     override fun check() {
         name = ControllerCensor.cens(name)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
-        ControllerFandom.checkCan(apiAccount, fandomId, languageId, API.LVL_MODERATOR_RUBRIC)
+        ControllerFandom.checkCanOrThrow(apiAccount, fandomId, languageId, API.LVL_MODERATOR_RUBRIC)
         val fandomX = ControllerFandom.getFandom(fandomId)
         if (fandomX == null || fandomX.status != API.STATUS_PUBLIC) throw ApiException(API.ERROR_ACCESS)
         fandom = fandomX

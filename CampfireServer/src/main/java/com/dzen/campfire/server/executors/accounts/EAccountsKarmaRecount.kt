@@ -9,7 +9,7 @@ class EAccountsKarmaRecount : RAccountsKarmaRecount(0, "") {
 
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_DEBUG_RECOUNT_LEVEL_AND_KARMA)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_DEBUG_RECOUNT_LEVEL_AND_KARMA)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 

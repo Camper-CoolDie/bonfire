@@ -15,7 +15,7 @@ import com.sup.dev.java_pc.sql.SqlQueryUpdate
 class EQuestsPublish : RQuestsPublish(0) {
     override fun check() {
         ControllerAccounts.checkAccountBanned(apiAccount.id)
-        ControllerFandom.checkCan(apiAccount, API.LVL_CREATE_QUESTS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CREATE_QUESTS)
         checkQuestEditable(questId, apiAccount)
 
         val req = EQuestsGetParts()

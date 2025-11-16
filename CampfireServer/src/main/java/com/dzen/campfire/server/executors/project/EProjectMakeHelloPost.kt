@@ -34,6 +34,7 @@ class EProjectMakeHelloPost : RProjectMakeHelloPost("", false, "", 0) {
         val publication = PublicationPost()
         publication.pages = arrayOf(page_1, page_2)
 
+        val fandom = ControllerFandom.getFandom(fandomId)!!
         publication.id = Database.insert("EPostPutPage insertPage", TPublications.NAME,
                 TPublications.publication_type, API.PUBLICATION_TYPE_POST,
                 TPublications.fandom_id, fandomId,
@@ -42,10 +43,10 @@ class EProjectMakeHelloPost : RProjectMakeHelloPost("", false, "", 0) {
                 TPublications.creator_id, apiAccount.id,
                 TPublications.publication_json, publication.jsonDB(true, Json()).toString(),
                 TPublications.parent_publication_id, 0,
-                TPublications.parent_fandom_closed, ControllerFandom.get(fandomId, TFandoms.fandom_closed).next<Int>(),
+                TPublications.parent_fandom_closed, if (fandom.closed) 1L else 0L,
                 TPublications.tag_s_1, API.PROJECT_KEY_CAMPFIRE,
                 TPublications.tag_s_2, "",
-                TPublications.publication_category, ControllerFandom.getCategory(fandomId),
+                TPublications.publication_category, fandom.category,
                 TPublications.status, API.STATUS_PUBLIC)
 
         ControllerPublicationsHistory.put(publication.id, HistoryCreate(apiAccount.id, apiAccount.imageId, apiAccount.name))

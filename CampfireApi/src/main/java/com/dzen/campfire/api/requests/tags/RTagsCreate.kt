@@ -44,17 +44,20 @@ open class RTagsCreate(
     class Response : Request.Response {
 
         var publicationId: Long = 0
+        var newCount: Long = 0
 
         constructor(json: Json) {
             json(false, json)
         }
 
-        constructor(publicationId: Long) {
+        constructor(publicationId: Long, newCount: Long) {
             this.publicationId = publicationId
+            this.newCount = newCount
         }
 
         override fun json(inp: Boolean, json: Json) {
             publicationId = json.m(inp, "unitId", publicationId)
+            newCount = json.m(inp, "newCount", newCount)
         }
 
     }

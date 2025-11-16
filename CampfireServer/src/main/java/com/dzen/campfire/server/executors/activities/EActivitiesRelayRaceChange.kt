@@ -24,7 +24,7 @@ class EActivitiesRelayRaceChange : RActivitiesRelayRaceChange(0, "", "", "") {
         if(activity == null) throw ApiException(API.ERROR_GONE)
         this.activity = activity
 
-        ControllerFandom.checkCan(apiAccount, activity.fandom.id, activity.fandom.languageId, API.LVL_MODERATOR_RELAY_RACE)
+        ControllerFandom.checkCanOrThrow(apiAccount, activity.fandom.id, activity.fandom.languageId, API.LVL_MODERATOR_RELAY_RACE)
         if(name.length < API.ACTIVITIES_NAME_MIN || name.length > API.ACTIVITIES_NAME_MAX) throw ApiException(API.ERROR_ACCESS)
         if(description.length < API.ACTIVITIES_DESC_MIN || description.length > API.ACTIVITIES_DESC_MAX) throw ApiException(API.ERROR_ACCESS)
     }

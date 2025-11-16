@@ -134,6 +134,15 @@ class SFandom private constructor(
             xFandom.setImageTitleGif(r.imageTitleGif)
             cardTitle.setParams(r.subscriptionType)
             cardViceroy.setParams(r.viceroyAccount, r.viceroyDate)
+            cardButtons.setParams(
+                r.subChatsCount,
+                r.tagsCount, r.categoriesCount,
+                r.karma30,
+                r.subscribersCount,
+                r.rubricsCount,
+                r.wikiArticlesCount,
+                r.relayRacesCount,
+            )
         }.onFinish{
             updateBackground()
         }

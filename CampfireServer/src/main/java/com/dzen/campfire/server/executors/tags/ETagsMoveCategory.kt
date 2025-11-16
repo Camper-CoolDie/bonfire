@@ -28,7 +28,7 @@ class ETagsMoveCategory : RTagsMoveCategory(0, 0, "") {
         if (publicationOther!!.parentPublicationId != 0L) throw ApiException(E_BAD_CATEGORY)
         if (publicationOther!!.id == publication!!.id) throw ApiException(E_BAD_CATEGORY)
 
-        ControllerFandom.checkCan(apiAccount, publication!!.fandom.id, publication!!.fandom.languageId, API.LVL_MODERATOR_TAGS)
+        ControllerFandom.checkCanOrThrow(apiAccount, publication!!.fandom.id, publication!!.fandom.languageId, API.LVL_MODERATOR_TAGS)
 
     }
 

@@ -28,7 +28,7 @@ class ETagsMoveTag : RTagsMoveTag(0, 0, "") {
         if (publicationOther!!.parentPublicationId == 0L) throw ApiException(E_BAD_TAG)
         if (publicationOther!!.id == publication!!.id) throw ApiException(E_BAD_TAG)
 
-        ControllerFandom.checkCan(apiAccount, publication!!.fandom.id, publication!!.fandom.languageId, API.LVL_MODERATOR_TAGS)
+        ControllerFandom.checkCanOrThrow(apiAccount, publication!!.fandom.id, publication!!.fandom.languageId, API.LVL_MODERATOR_TAGS)
 
     }
 

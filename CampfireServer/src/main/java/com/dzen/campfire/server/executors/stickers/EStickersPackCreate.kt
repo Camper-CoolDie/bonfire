@@ -12,7 +12,7 @@ class EStickersPackCreate : RStickersPackCreate("", null) {
 
     override fun check() {
         packName = ControllerCensor.cens(packName)
-        ControllerFandom.checkCan(apiAccount, API.LVL_CREATE_STICKERS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CREATE_STICKERS)
 
         if (avatar!!.size > API.STICKERS_PACK_IMAGE_WEIGHT) throw ApiException(E_BAD_IMAGE_WEIGHT)
         if (!ToolsImage.checkImageScaleUnknownType(avatar!!, API.STICKERS_PACK_IMAGE_SIDE, API.STICKERS_PACK_IMAGE_SIDE, true, false, true)) throw ApiException(E_BAD_IMAGE_SIZE)

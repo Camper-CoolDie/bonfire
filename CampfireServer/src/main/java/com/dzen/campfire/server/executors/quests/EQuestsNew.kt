@@ -13,7 +13,7 @@ import com.sup.dev.java_pc.sql.Database
 
 class EQuestsNew : RQuestsNew("", 0) {
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_CREATE_QUESTS)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_CREATE_QUESTS)
         ControllerAccounts.checkAccountBanned(apiAccount.id)
 
         title = title.trim()

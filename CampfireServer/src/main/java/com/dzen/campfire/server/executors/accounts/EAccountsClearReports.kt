@@ -17,7 +17,7 @@ class EAccountsClearReports : RAccountsClearReports(0, "") {
 
     @Throws(ApiException::class)
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_BAN)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_BAN)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 

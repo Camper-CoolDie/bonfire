@@ -21,7 +21,7 @@ class EActivitiesRemove : RActivitiesRemove(0, "") {
         if(activity == null) throw ApiException(API.ERROR_GONE)
         this.activity = activity
 
-        ControllerFandom.checkCan(apiAccount, activity.fandom.id, activity.fandom.languageId, API.LVL_MODERATOR_RELAY_RACE)
+        ControllerFandom.checkCanOrThrow(apiAccount, activity.fandom.id, activity.fandom.languageId, API.LVL_MODERATOR_RELAY_RACE)
     }
 
     override fun execute(): Response {

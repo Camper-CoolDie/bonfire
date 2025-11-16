@@ -44,8 +44,8 @@ object ControllerActivities {
                 if(followsIds.contains(fromAccountId)) return
             }
             if(settings.userActivitiesAllowed_followedFandoms){
-                val followsIds = ControllerFandom.getFollowsIds(nextAccountId)
-                if(followsIds.contains(fandomId)) return
+                val followsIds = ControllerFandom.getSubscriptions(nextAccountId)
+                if(followsIds.contains(Pair(fandomId, languageId))) return
             }
             throw ApiException(API.ERROR_RELAY_NEXT_NOT_ALLOWED)
         }

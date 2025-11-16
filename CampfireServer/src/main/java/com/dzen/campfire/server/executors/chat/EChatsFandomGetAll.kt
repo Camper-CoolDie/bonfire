@@ -80,13 +80,16 @@ class EChatsFandomGetAll : RChatsFandomGetAll(0, 0, 0) {
         chat.tag = tag
 
         if (chat.chatMessage.id == 0L) {
-            val v = ControllerFandom.get(fandomId, TFandoms.name, TFandoms.image_id)
+            val fandom = ControllerFandom.getFandom(fandomId)
+            if (fandom == null) {
+                throw ApiException(API.ERROR_GONE)
+            }
 
             chat.chatMessage.fandom.id = fandomId
             chat.chatMessage.fandom.languageId = languageId
             if (v.hasNext()) {
-                chat.chatMessage.fandom.name = v.next()
-                chat.chatMessage.fandom.imageId = v.next()
+                chat.chatMessage.fandom.name = fandom.name
+                chat.chatMessage.fandom.imageId = fandom.imageId
             }
         }
 

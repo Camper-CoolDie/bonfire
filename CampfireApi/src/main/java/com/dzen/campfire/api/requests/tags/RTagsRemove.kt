@@ -23,17 +23,21 @@ open class RTagsRemove(
     }
 
     class Response : Request.Response {
+        var newTagsCount: Long = 0
+        var newCategoriesCount: Long = 0
 
         constructor(json: Json) {
             json(false, json)
         }
 
-        constructor() {
-
+        constructor(newTagsCount: Long, newCategoriesCount: Long) {
+            this.newTagsCount = newTagsCount
+            this.newCategoriesCount = newCategoriesCount
         }
 
         override fun json(inp: Boolean, json: Json) {
-
+            newTagsCount = json.m(inp, "newTagsCount", newTagsCount)
+            newCategoriesCount = json.m(inp, "newCategoriesCount", newCategoriesCount)
         }
 
     }

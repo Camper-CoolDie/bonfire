@@ -27,9 +27,9 @@ class EChatGet : RChatGet(ChatTag(), 0) {
 
         if (tag.chatType == API.CHAT_TYPE_FANDOM_ROOT) {
             if (!API.isLanguageExsit(tag.targetSubId)) throw ApiException(API.ERROR_GONE)
-            val v = ControllerFandom.get(tag.targetId, TFandoms.status)
-            if (v.isEmpty()) throw ApiException(API.ERROR_GONE)
-            if (v.next<Long>() != API.STATUS_PUBLIC) throw ApiException(API.ERROR_ACCESS)
+            val fandom = ControllerFandom.getFandom(tag.targetId)
+            if (fandom == null) throw ApiException(API.ERROR_GONE)
+            if (fandom.status != API.STATUS_PUBLIC) throw ApiException(API.ERROR_ACCESS)
         }
         tag.setMyAccountId(apiAccount.id)
 

@@ -10,7 +10,6 @@ import com.dzen.campfire.server.controllers.*
 import com.dzen.campfire.api.tools.ApiException
 
 class EPostPinFandom : RPostPinFandom(0, 0, 0, "") {
-
     override fun check() {
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
 
@@ -27,19 +26,28 @@ class EPostPinFandom : RPostPinFandom(0, 0, 0, "") {
     }
 
     override fun execute(): Response {
+        val oldPostId = ControllerFandom.changePinnedPost(fandomId, languageId, postId)
+        if (postId != oldPostId) {
+            ControllerPublications.moderation(
+                ModerationPinPostInFandom(comment, postId, oldPostId),
+                apiAccount.id,
+                fandomId,
+                languageId,
+                postId
+            )
 
-        var oldPostId = 0L
+            if (postId > 0L) {
+                ControllerPublicationsHistory.put(
+                    postId,
+                    HistoryAdminPinFandom(apiAccount.id, apiAccount.imageId, apiAccount.name, comment)
+                )
+            }
 
-        if (postId > 0L) {
-            ControllerCollisions.updateOrCreateValue1(fandomId, languageId, API.COLLISION_FANDOM_PINNED_POST, postId)
-            ControllerPublicationsHistory.put(postId, HistoryAdminPinFandom(apiAccount.id, apiAccount.imageId, apiAccount.name, comment))
-        } else {
-            oldPostId = ControllerCollisions.getCollision(fandomId, languageId, API.COLLISION_FANDOM_PINNED_POST)
-            ControllerCollisions.removeCollisions(fandomId, languageId, API.COLLISION_FANDOM_PINNED_POST)
-            if (oldPostId > 0) ControllerPublicationsHistory.put(oldPostId, HistoryAdminUnpinFandom(apiAccount.id, apiAccount.imageId, apiAccount.name, comment))
+            ControllerPublicationsHistory.put(
+                oldPostId,
+                HistoryAdminUnpinFandom(apiAccount.id, apiAccount.imageId, apiAccount.name, comment)
+            )
         }
-
-        ControllerPublications.moderation(ModerationPinPostInFandom(comment, postId, oldPostId), apiAccount.id, fandomId, languageId, postId)
 
         return Response()
     }

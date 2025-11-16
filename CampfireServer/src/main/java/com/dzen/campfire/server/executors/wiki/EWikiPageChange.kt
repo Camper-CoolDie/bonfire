@@ -19,9 +19,9 @@ class EWikiPageChange : RWikiPageChange(0, 0, null, 0) {
         if (wikiTitle.wikiStatus != API.STATUS_PUBLIC) throw ApiException(E_BAD_STATUS)
         if (wikiTitle.itemType != API.WIKI_TYPE_ARTICLE) throw ApiException(E_BAD_TYPE)
 
-        ControllerFandom.checkCan(apiAccount, wikiTitle.fandomId, languageId, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, wikiTitle.fandomId, languageId, API.LVL_MODERATOR_WIKI_EDIT)
 
-        ControllerFandom.checkCan(apiAccount, wikiTitle.fandomId, languageId, API.LVL_MODERATOR_WIKI_EDIT)
+        ControllerFandom.checkCanOrThrow(apiAccount, wikiTitle.fandomId, languageId, API.LVL_MODERATOR_WIKI_EDIT)
         val wikiPagesOldX = ControllerWiki.getPagesByItemId_OnlyPublic(wikiItemId, languageId)
         if (wikiPagesOldX == null) throw ApiException(API.ERROR_GONE)
         wikiPagesOld = wikiPagesOldX

@@ -12,8 +12,7 @@ import com.dzen.campfire.api.tools.ApiException
 class EAccountsAdminRemoveDescription : RAccountsAdminRemoveDescription(0,"") {
 
     override fun check() {
-        ControllerFandom.checkCan(apiAccount, API.LVL_ADMIN_USER_REMOVE_DESCRIPTION)
-        ControllerFandom.checkCanModerate(apiAccount, accountId)
+        ControllerFandom.checkCanOrThrow(apiAccount, API.LVL_ADMIN_USER_REMOVE_DESCRIPTION)
         comment = ControllerModeration.parseComment(comment, apiAccount.id)
     }
 
