@@ -8,6 +8,7 @@ import com.sayzen.campfiresdk.compose.auth.AccountSecurityScreen
 import com.sayzen.campfiresdk.compose.settings.ExperimentsScreen
 import com.sayzen.campfiresdk.controllers.ControllerApi
 import com.sayzen.campfiresdk.controllers.ControllerCampfireSDK
+import com.sayzen.campfiresdk.controllers.ControllerLocale
 import com.sayzen.campfiresdk.controllers.ControllerSettings
 import com.sayzen.campfiresdk.controllers.t
 import com.sayzen.campfiresdk.screens.fandoms.search.SFandomsSearch
@@ -16,7 +17,6 @@ import com.sup.dev.android.app.SupAndroid
 import com.sup.dev.android.libs.image_loader.ImageLoader
 import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.Navigator
-import com.sup.dev.android.tools.ToolsAndroid
 import com.sup.dev.android.views.settings.Settings
 import com.sup.dev.android.views.settings.SettingsSwitcher
 import com.sup.dev.android.views.splash.SplashAlert
@@ -132,8 +132,7 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
 
     private fun changeLanguage() {
         ControllerCampfireSDK.createLanguageMenu(ControllerApi.getLanguage(ControllerSettings.appLanguage).id) { languageId ->
-            ControllerSettings.appLanguage = ControllerApi.getLanguage(languageId).code
-            ToolsAndroid.setLanguage(SupAndroid.appContext!!, ControllerSettings.appLanguage)
+            ControllerLocale.setLanguage(ControllerApi.getLanguage(languageId).code)
             SplashAlert()
                     .setText(t(API_TRANSLATE.settings_restatr_alert))
                     .setOnCancel(t(API_TRANSLATE.app_not_now))

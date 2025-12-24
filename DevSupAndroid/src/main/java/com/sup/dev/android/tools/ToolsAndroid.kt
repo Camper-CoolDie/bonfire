@@ -18,6 +18,8 @@ import android.os.*
 import android.view.Surface
 import android.view.WindowManager
 import androidx.annotation.RequiresPermission
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import com.sup.dev.android.BuildConfig
 import com.sup.dev.android.app.SupAndroid
 import com.sup.dev.android.magic_box.Miui
@@ -92,10 +94,14 @@ object ToolsAndroid {
 
     @Suppress("DEPRECATION")
     fun setLanguage(context: Context, lang: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // we can set it to any locale, even if it's not declared in locales_config.xml
+            val appLocale = LocaleListCompat.forLanguageTags(lang)
+            AppCompatDelegate.setApplicationLocales(appLocale)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             val res = context.resources
             val conf = res.configuration
-            conf.setLocale(Locale(lang.lowercase()))
+            conf.locale = Locale(lang)
             res.updateConfiguration(conf, res.displayMetrics)
         }
     }

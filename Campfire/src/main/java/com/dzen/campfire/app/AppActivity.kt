@@ -39,7 +39,6 @@ import com.sayzen.campfiresdk.screens.post.bookmarks.SBookmarks
 import com.sayzen.campfiresdk.screens.post.drafts.SDrafts
 import com.sayzen.campfiresdk.screens.quests.SQuests
 import com.sayzen.campfiresdk.support.adapters.XAccount
-import com.sup.dev.android.app.SupAndroid
 import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.activity.SActivity
 import com.sup.dev.android.libs.screens.activity.SActivityType
@@ -213,12 +212,6 @@ class AppActivity : SActivity() {
 
         updateNotificationsCount()
         updateAccount()
-
-        if (ToolsAndroid.getLanguage(this) != ControllerSettings.appLanguage.lowercase()) {
-            ToolsAndroid.setLanguage(SupAndroid.appContext!!, ControllerSettings.appLanguage)
-            ToolsAndroid.setLanguage(this, ControllerSettings.appLanguage)
-            recreate()
-        }
 
         ControllerAppUpdate.registerForActivityResult()
     }

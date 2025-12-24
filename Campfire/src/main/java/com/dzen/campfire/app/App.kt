@@ -80,8 +80,6 @@ class App : Application() {
 
         initSdk()
 
-        ToolsAndroid.setLanguage(applicationContext, ControllerSettings.appLanguage)
-
         SActivity.onUrlClicked = {
             ControllerExternalLinks.openLink(it)
         }
